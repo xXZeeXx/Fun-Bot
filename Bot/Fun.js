@@ -494,7 +494,7 @@ function chatMe(msg)
                         break;        
                         
                 case "skip":
-                        if(API.getUser(data.fromID).permission > 1){
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             Funbot.skip();
                         }else{
                            API.sendChat("This command requires Bouncer only!");
