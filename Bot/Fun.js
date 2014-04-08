@@ -87,7 +87,8 @@ var blockedSongs = [
     "The Fox [Official music video HD]",
     "10 hour",
     "Trololo",
-    "#SELFIE (Official Music Video)"
+    "#SELFIE (Official Music Video)",
+    "Heyayayay"
 ];
 
 // Keywords of blocked artist.
