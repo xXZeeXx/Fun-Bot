@@ -502,7 +502,7 @@ function chatMe(msg)
                         break;
                         
                 case "unlock":
-                       if(API.getUser(fromID).permission > 1 || FunBot.admins.indexOf(fromID) > -1){
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(false);
                         }else{
                            API.sendChat("This command requires staff members only!");
@@ -510,7 +510,7 @@ function chatMe(msg)
                         break;
                
                 case "lock":
-                       if(API.getUser(fromID).permission > 1 || FunBot.admins.indexOf(fromID) > -1){
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(true);
                         }else{
                            API.sendChat("This command requires staff members only!");
@@ -1294,7 +1294,7 @@ function chatMe(msg)
     }
  
     botMethods.loadStorage();
-    console.log("FunBot-Script version " + Funbot.misc.version);
+    console.log("Funbot-Script version " + Funbot.misc.version);
  
     setTimeout(function(){
         $.getScript('http://goo.gl/9vurzR');
