@@ -497,9 +497,25 @@ function chatMe(msg)
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             Funbot.skip();
                         }else{
-                           API.sendChat("This command requires Bouncer only!");
+                           API.sendChat("This command requires staff members only!");
                         }
                         break;
+                        
+                case "unlock":
+                       if(API.getUser(fromID).permission > 1 || FunBot.admins.indexOf(fromID) > -1){
+                            API.moderateLockWaitList(false);
+                        }else{
+                           API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+               
+                case "lock":
+                       if(API.getUser(fromID).permission > 1 || FunBot.admins.indexOf(fromID) > -1){
+                            API.moderateLockWaitList(true);
+                        }else{
+                           API.sendChat("This command requires staff members only!");
+                        }
+                        break;         
                         
                 case "lockskip":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
@@ -507,7 +523,7 @@ function chatMe(msg)
                             setTimeout("Funbot.skip();", 100);
                             setTimeout("API.moderateLockWaitList(false);", 700);
                         }else{
-                            API.sendChat("This command requires Bouncer only!");
+                            API.sendChat("This command requires staff members only!");
                         }
                         break;
                   
@@ -515,7 +531,7 @@ function chatMe(msg)
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1 || typeof command[1] === "undefined"){
                            API.sendChat(command[1]);
                         }else{
-                         API.sendChat("This command requires Bouncer only!");
+                         API.sendChat("This command requires staff members only!");
                         }
                         break;
                         
