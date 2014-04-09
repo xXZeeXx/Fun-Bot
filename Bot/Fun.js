@@ -49,7 +49,6 @@ toSave.settings = Funbot.settings;
 toSave.moderators = Funbot.moderators;
  
 Funbot.misc.version = "1.0.51";
-Funbot.misc.origin = "This bot was created by DJ - ɴᴇᴏɴ - TFL, and it is copyrighted!";
 Funbot.misc.ready = true;
 var songBoundary = 60 * 10;
 var announcementTick = 60 * 10;
@@ -765,10 +764,8 @@ function chatMe(msg)
                    case "author":
                    case "authors":
                    case "creator":
-                        if(Funbot.admins.indexOf(fromID) == -1 || API.getUser(fromID).permission < 2){
-                           API.sendChat(Funbot.misc.origin);
-                           Funbot.misc.ready = false;
-                           setTimeout(function(){ Funbot.misc.ready = true; }, Funbot.settings.cooldown * 1000);
+                        if(Funbot.admins.indexOf(fromID) !== -1 || API.getUser(fromID).permission < 2){
+                           API.sendChat("This bot was created by: ๖ۣۜĐل - ɴᴇᴏɴ - TFL, And it's Copyrighted!");
                         }
                         break;
                        
