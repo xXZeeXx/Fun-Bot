@@ -48,7 +48,7 @@ toSave = {};
 toSave.settings = Funbot.settings;
 toSave.moderators = Funbot.moderators;
  
-Funbot.misc.version = "1.0.51";
+Funbot.misc.version = "1.0.57";
 Funbot.misc.ready = true;
 var songBoundary = 60 * 10;
 var announcementTick = 60 * 10;
