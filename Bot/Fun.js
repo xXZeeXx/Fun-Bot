@@ -464,7 +464,7 @@ function chatMe(msg)
                         }else if(command[1].indexOf("@") > -1){
                             API.sendChat(command[1]+" My commands: reward | reload | die | addsong | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         setTimeout(function(){
-                           API.sendChat("creator | status | bf | cf | tbf | tcf");
+                           API.sendChat("addme | removeme | creator | status | bf | cf | tbf | tcf");
                         }, 600);
                         }
                         break;
@@ -510,11 +510,14 @@ function chatMe(msg)
                         break;
                         
                 case "addme":
-                case "que":
-                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
-                            API.moderateAddDJ(data.fromID)
-                        }else{
-                           API.sendChat("This command requires staff members only!");
+                        if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            API.moderateAddDJ(data.fromID);
+                        }
+                        break;
+                        
+                case "removeme":
+                        if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            API.moderateRemoveDJ(data.fromID);
                         }
                         break;
                
