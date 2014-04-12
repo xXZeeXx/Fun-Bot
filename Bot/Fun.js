@@ -508,6 +508,15 @@ function chatMe(msg)
                            API.sendChat("This command requires staff members only!");
                         }
                         break;
+                        
+                case "addme":
+                case "que":
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            API.moderateAddDJ(data.fromID)
+                        }else{
+                           API.sendChat("This command requires staff members only!");
+                        }
+                        break;
                
                 case "lock":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
