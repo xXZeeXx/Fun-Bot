@@ -454,15 +454,15 @@ function chatMe(msg)
                         if(typeof command[1] == "undefined"){
                             API.sendChat(".{commands} Mention is included!");
                         setTimeout(function(){
-                           API.sendChat("reward | reload | die | addsong | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
+                           API.sendChat("reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         }, 100);
                         setTimeout(function(){
-                           API.sendChat("addme | removeme | creator | status | ban | bf | cf | tbf | tcf");
+                           API.sendChat("add | remove | creator | status | ban | bf | cf | tbf | tcf");
                         }, 600);
                         }else if(command[1].indexOf("@") > -1){
-                            API.sendChat(command[1]+" My commands: reward | reload | die | addsong | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
+                            API.sendChat(command[1]+" My commands: reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         setTimeout(function(){
-                           API.sendChat("addme | removeme | creator | status | ban | bf | cf | tbf | tcf");
+                           API.sendChat("add | remove | creator | status | ban | bf | cf | tbf | tcf");
                         }, 600);
                         }
                         break;
@@ -507,14 +507,14 @@ function chatMe(msg)
                         }
                         break;
                         
-                case "addme":
-                        if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                case "add":
+                        if(API.getUser(fromID).permission < 2 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateAddDJ(data.fromID);
                         }
                         break;
                         
-                case "removeme":
-                        if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                case "remove":
+                        if(API.getUser(fromID).permission < 2 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateRemoveDJ(data.fromID);
                         }
                         break;
@@ -528,7 +528,7 @@ function chatMe(msg)
                             API.sendChat("This command requires staff members only!");
                         }
                         break;
-               
+                        
                 case "lock":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(true);
@@ -567,7 +567,6 @@ function chatMe(msg)
                         }
                         break;
                         
-                case "add":
                 case "grab":
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var addsong = ["[user], Grabbing song!!","[user], Ohhhh yeah :purple_heart:","[user], Now adding current song..."];
