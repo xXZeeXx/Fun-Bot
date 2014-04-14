@@ -513,8 +513,7 @@ function chatMe(msg)
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             var username = msg.substr(msg.indexOf('@')+1);
                             var userid = getUserID(username);
-                            API.sendChat("Now banning "+ userid.username +" For one hour!")
-                            setTimeout("API.moderateBanUser(userid, 0, API.BAN.HOUR);", 400);
+                            API.moderateBanUser(userid, 0, API.BAN.HOUR);
                         }else{
                             API.sendChat("This command requires staff members only!");
                         }
