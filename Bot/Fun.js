@@ -530,6 +530,7 @@ function chatMe(msg)
                            API.moderateBanUser(users[i].username);
                           }
                         }
+                        }
                         break;
                
                 case "lock":
