@@ -1229,6 +1229,7 @@ function chatMe(msg)
             API.moderateBanUser(userid, 0, API.BAN.HOUR);
             }
        }
+      }
     }
     
     API.on(API.CHAT, function(data){
