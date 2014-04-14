@@ -1214,22 +1214,20 @@ function chatMe(msg)
     });
    
 
-    function onChat(data){
-          var id = data.fromID;
-          var msg = data.message;
-          var userfrom = data.from;
-        if(API.getUser(userfrom).permission > 1 || Funbot.admins.indexOf(userfrom) > -1){
-        if (msg.indexOf('.ban') == 0) {
-          var username = msg.substr(msg.indexOf('@')+1);
-          var userid = getUserID(username);
-            API.moderateDeleteChat(data.chatID);
-        if (userid === null) {
-            API.sendChat("User: " + username + " Is now being banned!");
-       }else{
-            API.moderateBanUser(userid, 0, API.BAN.HOUR);
-            }
-          }
-       }
+    function onChat(data) {
+        var id = data.fromID;
+        var msg = data.message;
+        var userfrom = data.from;
+     if (msg.indexOf('.ban') == 0) {
+        var username = msg.substr(msg.indexOf('@')+1);
+        var userid = getUserID(username);
+         API.moderateDeleteChat(data.chatID);
+     if (userid === null) {
+         API.sendChat("User: " + username + " Is now being banned!");
+      }else{
+         API.moderateBanUser(userid, 0, API.BAN.HOUR);
+           }
+        } 
     }
     
     API.on(API.CHAT, function(data){
