@@ -298,6 +298,7 @@ API.on(API.DJ_ADVANCE, listener);
 API.on(API.DJ_ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
 API.on(API.DJ_ADVANCE, DJ_ADVANCE);
+API.on(API.CHAT, onChat);
 $('#playback').hide();
 $('#audience').hide();
 API.setVolume(0);
@@ -527,17 +528,6 @@ function chatMe(msg)
                             API.moderateRemoveDJ(data.fromID);
                         }
                         break;
-                        
-                case "ban":
-                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) !== -1){
-                        var username = msg.substr(msg.indexOf('@')+1);
-                        var userid = getUserID(username);
-                        if (userid === null){
-                         API.sendChat("Now banning User: " + username + " For one hour!");
-                         API.moderateBanUser(userid, 0, API.BAN.HOUR);
-                         }
-                       }
-                       break;
                
                 case "lock":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
@@ -1222,6 +1212,24 @@ function chatMe(msg)
             }
         }
     });
+   
+
+    function onChat(data) {
+          var id = data.fromID;
+          var msg = data.message;
+          var userfrom = data.from;
+        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+        if (msg.indexOf('.ban') == 0) {
+          var username = msg.substr(msg.indexOf('@')+1);
+          var userid = getUserID(username);
+            API.moderateDeleteChat(data.chatID);
+        if (userid === null) {
+            API.sendChat("User: " + username + " Is now being banned!");
+       }else{
+            API.moderateBanUser(userid, 0, API.BAN.HOUR);
+            }
+       }
+    }
     
     API.on(API.CHAT, function(data){
         msg = data.message.toLowerCase(), chatID = data.chatID;
