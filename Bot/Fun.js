@@ -559,7 +559,7 @@ function chatMe(msg)
                         
                 case "grab":
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
-                        var addsong = ["[user], Grabbing song!!","[user], Ohhhh yeah :purple_heart:","[user], Now adding current song..."];
+                        var addsong = ["[user] I am now grabbing current song.","[user] This song is now mine! :blush:","[user] Now adding this current music video..."];
                         r = Math.floor(Math.random() * addsong.length);
                             API.sendChat(addsong[r].replace("user", data.from));
                             $(".icon-curate").click();
