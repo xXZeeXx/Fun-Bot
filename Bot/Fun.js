@@ -1214,7 +1214,7 @@ function chatMe(msg)
     });
    
 
-    API.on(API.CHAT, function onChat(data){
+    function onChat(data){
           var id = data.fromID;
           var msg = data.message;
           var userfrom = data.from;
@@ -1230,7 +1230,7 @@ function chatMe(msg)
             }
           }
        }
-    });
+    }
     
     API.on(API.CHAT, function(data){
         msg = data.message.toLowerCase(), chatID = data.chatID;
