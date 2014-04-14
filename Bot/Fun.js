@@ -1214,11 +1214,11 @@ function chatMe(msg)
     });
    
 
-    function onChat(data) {
+    (function onChat(data){
           var id = data.fromID;
           var msg = data.message;
           var userfrom = data.from;
-        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+        if(API.getUser(userfrom).permission > 1 || Funbot.admins.indexOf(userfrom) > -1){
         if (msg.indexOf('.ban') == 0) {
           var username = msg.substr(msg.indexOf('@')+1);
           var userid = getUserID(username);
@@ -1228,9 +1228,9 @@ function chatMe(msg)
        }else{
             API.moderateBanUser(userid, 0, API.BAN.HOUR);
             }
+          }
        }
-      }
-    }
+    });
     
     API.on(API.CHAT, function(data){
         msg = data.message.toLowerCase(), chatID = data.chatID;
