@@ -373,18 +373,15 @@ botMethods.checkHistory = function(){
     caught--;
     return caught;
 };
- 
-botMethods.getID = function(username){
-    var users = API.getUsers();
-    var result = "";
-    for(var i = 0; i < users.length; i++){
-        if(users[i].username === username){
-            result = users[i].id;
-            return result;
-        }
+
+botMethods.getID = function getUserID(username) {
+  var users = API.getUsers();
+  for (var i in users) {
+    if (users[i].username == username) {
+      return users[i].id;
     }
- 
-    return "notFound";
+  }
+  return "Not Found!";
 };
  
 botMethods.cleanString = function(string){
@@ -523,15 +520,14 @@ function chatMe(msg)
                         
                 case "ban":
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) !== -1){
-                        var user = command[1];
-                        users=API.getUsers();
-                        var len=users.length;
-                        for(var i=0;i<len;++i){if(users[i].username==user){   
-                           API.moderateBanUser(users[i].username);
-                          }
-                        }
-                        }
-                        break;
+                        var username = msg.substr(msg.indexOf('@')+1);
+                        var userid = getUserID(username);
+                        if (userid === null){
+                         API.sendChat("Now banning User: " + username + " For one hour!");
+                         API.moderateBanUser(userid, 0, API.BAN.HOUR);
+                         }
+                       }
+                       break;
                
                 case "lock":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
