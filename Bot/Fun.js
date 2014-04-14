@@ -519,6 +519,46 @@ function chatMe(msg)
                         }
                         break;
                         
+                case "unban":
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            var username = msg.substr(msg.indexOf('@')+1);
+                            var userid = getUserID(username);
+                            API.moderateUnbanUser(userid);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                        
+                case "queup":
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            var username = msg.substr(msg.indexOf('@')+1);
+                            var userid = getUserID(username);
+                            API.moderateAddDJ(userid);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                        
+                case "quedown":
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            var username = msg.substr(msg.indexOf('@')+1);
+                            var userid = getUserID(username);
+                            API.moderateRemoveDJ(userid);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                        
+                case "move":
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1 || typeof command[1] === "undefined"){
+                            var username = msg.substr(msg.indexOf('@')+1);
+                            var userid = getUserID(username);
+                            API.moderateMoveDJ(userid, command[1]);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                        
                 case "lock":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(true);
