@@ -520,6 +520,13 @@ function chatMe(msg)
                             API.moderateRemoveDJ(data.fromID);
                         }
                         break;
+                        
+                case "ban ":
+                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            var user = banner(API.getUsers(), "id");
+                            API.moderateBanUser(user);
+                        }
+                        break;
                
                 case "lock":
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
