@@ -415,6 +415,16 @@ botMethods.cleanString = function(string){
         window.setTimeout(skipLongSong, 1000 * songBoundary);
     }
 }
+
+function getUserID(username) {
+  var users = API.getUsers();
+  for (var i in users) {
+    if (users[i].username == username) {
+      return users[i].id;
+    }
+  }
+  return "User Not Found!";
+} 
  
 function skipLongSong()
 {
