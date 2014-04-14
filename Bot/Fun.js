@@ -522,7 +522,7 @@ function chatMe(msg)
                         break;
                         
                 case "ban":
-                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) !== -1 || command[1] == API.getUsers().username){
+                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) !== -1 || command[1] == API.getUsers().id){
                            API.moderateBanUser(command[1]);
                         }else{
                          API.sendChat("This command requires staff members only!");
