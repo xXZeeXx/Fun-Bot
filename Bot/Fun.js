@@ -362,14 +362,14 @@ botMethods.checkHistory = function(){
     return caught;
 };
 
-botMethods.getID = function getUserID(username) {
+function getUserID(username) {
   var users = API.getUsers();
   for (var i in users) {
     if (users[i].username == username) {
       return users[i].id;
     }
   }
-  return "Not Found!";
+  return "User Not Found!";
 };
  
 botMethods.cleanString = function(string){
@@ -403,16 +403,6 @@ botMethods.cleanString = function(string){
         window.setTimeout(skipLongSong, 1000 * songBoundary);
     }
 }
-
-function getUserID(username) {
-  var users = API.getUsers();
-  for (var i in users) {
-    if (users[i].username == username) {
-      return users[i].id;
-    }
-  }
-  return "User Not Found!";
-} 
  
 function skipLongSong()
 {
