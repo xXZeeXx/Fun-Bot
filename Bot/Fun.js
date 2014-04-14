@@ -298,7 +298,6 @@ API.on(API.DJ_ADVANCE, listener);
 API.on(API.DJ_ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
 API.on(API.DJ_ADVANCE, DJ_ADVANCE);
-API.on(API.CHAT, onChat);
 $('#playback').hide();
 $('#audience').hide();
 API.setVolume(0);
@@ -323,18 +322,6 @@ API.moderateForceSkip();
 };
 
 Funbot.unhook = function(){
-API.off(API.DJ_ADVANCE, djAdvanceEvent);
-API.off(API.DJ_ADVANCE, listener);
-API.off(API.DJ_ADVANCE, woot);
-API.off(API.USER_JOIN, UserJoin);
-API.off(API.DJ_ADVANCE, DJ_ADVANCE);
-API.off(API.USER_JOIN);
-API.off(API.USER_LEAVE);
-API.off(API.USER_SKIP);
-API.off(API.USER_FAN);
-API.off(API.CURATE_UPDATE);
-API.off(API.DJ_ADVANCE);
-API.off(API.VOTE_UPDATE);
 API.off(API.CHAT);
 $('#playback').show();
 $('#audience').show();
@@ -450,6 +437,9 @@ function chatMe(msg)
     API.on(API.CHAT, function(data){
         if(data.message.indexOf('.') === 0){
             var msg = data.message, from = data.from, fromID = data.fromID;
+            var id = data.fromID;
+            var msg = data.message;
+            var userfrom = data.from;
             var command = msg.substring(1).split(' ');
             if(typeof command[2] != "undefined"){
                 for(var i = 2; i<command.length; i++){
@@ -526,6 +516,16 @@ function chatMe(msg)
                 case "removeme":
                         if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateRemoveDJ(data.fromID);
+                        }
+                        break;
+                        
+                case "ban":
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                            var username = msg.substr(msg.indexOf('@')+1);
+                            var userid = getUserID(username);
+                            API.moderateBanUser(userid, 0, API.BAN.HOUR);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
                         }
                         break;
                
@@ -1214,22 +1214,6 @@ function chatMe(msg)
     });
    
 
-    function onChat(data) {
-        var id = data.fromID;
-        var msg = data.message;
-        var userfrom = data.from;
-     if (msg.indexOf('.ban') == 0) {
-        var username = msg.substr(msg.indexOf('@')+1);
-        var userid = getUserID(username);
-         API.moderateDeleteChat(data.chatID);
-     if (userid === null) {
-         API.sendChat("User: " + username + " Is now being banned!");
-      }else{
-         API.moderateBanUser(userid, 0, API.BAN.HOUR);
-           }
-        } 
-    }
-    
     API.on(API.CHAT, function(data){
         msg = data.message.toLowerCase(), chatID = data.chatID;
         
