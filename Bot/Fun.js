@@ -1214,7 +1214,7 @@ function chatMe(msg)
     });
    
 
-    (function onChat(data){
+    API.on(API.CHAT, function onChat(data){
           var id = data.fromID;
           var msg = data.message;
           var userfrom = data.from;
