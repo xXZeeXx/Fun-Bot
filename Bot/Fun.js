@@ -523,7 +523,7 @@ function chatMe(msg)
                         
                 case "ban":
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
-                            var user = banner(API.getUsers(), "id");
+                            var user = (API.getUsers(), "id");
                             API.moderateBanUser(user);
                         }
                         break;
