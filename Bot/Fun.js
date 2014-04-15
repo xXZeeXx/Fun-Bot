@@ -315,7 +315,7 @@ API.sendChat(JoinMsg[r].replace("user", user.username));
 };
 
 function djAdvanceEvent(data){
-    setTimeout(function(){ botMethods.data }, 500);
+setTimeout(function(){ botMethods.data }, 500);
 };
 
 Funbot.skip = function(){
@@ -323,10 +323,19 @@ API.moderateForceSkip();
 };
 
 Funbot.unhook = function(){
+setTimeout(function(){
+API.off(API.USER_JOIN);
+API.off(API.USER_LEAVE);
+API.off(API.USER_SKIP);
+API.off(API.USER_FAN);
+API.off(API.CURATE_UPDATE);
+API.off(API.DJ_ADVANCE);
+API.off(API.VOTE_UPDATE);
 API.off(API.CHAT);
 $('#playback').show();
 $('#audience').show();
 API.setVolume(15);
+}, 100);
 };
 
 Funbot.hook = function(){
