@@ -27,10 +27,9 @@ How to function it? scroll down [HERE](https://github.com/DJ-Neon05/Fun-Bot#inst
 
 ```
 .reward | .reload | .die | .grab | .flipcoin | .catfact | .dogfact | .hug | .8ball | 
-.punish | .fortune | .songlink | download | .help | .whywoot | .whymeh | 
-.props | .votes | .woot | .meh | .skip | .say | .version | .userstats | .mystats | 
-.source | .set {rank} | .queup | .quedown | .add | .remove | .creator | .status | .ban | 
-.bf | .cf | tbf | tcf
+.punish | .fortune | .songlink | download | .help | .whywoot | .whymeh | .props | .votes |
+.woot | .meh | .skip | .say | .version | .userstats | .mystats | .source | 
+.set {rank} | .queup | .quedown | .add | .remove | .creator | .status | .ban | .bf | .cf | tbf | tcf
 ```
 `example 1`
 ```
