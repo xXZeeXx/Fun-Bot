@@ -102,8 +102,6 @@ var blockedArtists = [
 
 // Filter Keywords
 Funbot.filters.beggerWords = ["fanme","fan me","fan4fan","fan 4 fan","fan pls","fans please","need fan","more fan","fan back","give me fans","gimme fans","need fan"];
-Funbot.filters.commandWords = [".say",".test",".ping",".marco",".reward",".add",".addsong",".flipcoin",".catfact",".dogfact",".hug",".8ball",".fortune",".songlink",".download",".help",".whywoot",".whymeh",".props",".votes",".woot",".meh",".version",".userstats @",".mystats",".source",".roomstats",".roomstats2",".register",".join",".leave",".roll"];
-
 
 // Fun misc
 Funbot.misc.tacos = ["blunt","kush","Chemo","Locoweed","marijuana","Ganja"];
@@ -322,6 +320,10 @@ Funbot.skip = function(){
 API.moderateForceSkip();
 };
 
+Funbot.DC = function(){
+API.moderateDeleteChat(chatID);
+};
+
 Funbot.unhook = function(){
 API.off(API.CHAT);
 $('#playback').show();
@@ -442,6 +444,7 @@ function chatMe(msg)
  
                 case "command":
                 case "commands":
+                        Funbot.DC();
                         if(typeof command[1] == "undefined"){
                             API.sendChat(".{commands} Mention is included!");
                         setTimeout(function(){
@@ -459,6 +462,7 @@ function chatMe(msg)
                         break;
                 
                 case "test":
+                        Funbot.DC();
                         if(Funbot.admins.indexOf(fromID) > -1){
                             API.sendChat("@"+ data.from +" Test Successful");
                             }else{
@@ -467,6 +471,7 @@ function chatMe(msg)
                         break;
                         
                 case "ping":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.sendChat("@"+ data.from +" Pong!");
                             }else{
@@ -475,6 +480,7 @@ function chatMe(msg)
                         break;
                         
                 case "marco":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.sendChat("@"+ data.from +" Polo!");
                             }else{
@@ -483,6 +489,7 @@ function chatMe(msg)
                         break;        
                         
                 case "skip":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             Funbot.skip();
                         }else{
@@ -491,6 +498,7 @@ function chatMe(msg)
                         break;
                         
                 case "unlock":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(false);
                         }else{
@@ -499,18 +507,21 @@ function chatMe(msg)
                         break;
                         
                 case "add":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission < 2 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateAddDJ(data.fromID);
                         }
                         break;
                         
                 case "remove":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission < 2 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateRemoveDJ(data.fromID);
                         }
                         break;
                         
                 case "ban":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             var username = msg.substr(msg.indexOf('@')+1);
                             var userid = getUserID(username);
@@ -521,6 +532,7 @@ function chatMe(msg)
                         break;
                         
                 case "queup":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             var username = msg.substr(msg.indexOf('@')+1);
                             var userid = getUserID(username);
@@ -531,6 +543,7 @@ function chatMe(msg)
                         break;
                         
                 case "quedown":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             var username = msg.substr(msg.indexOf('@')+1);
                             var userid = getUserID(username);
@@ -541,6 +554,7 @@ function chatMe(msg)
                         break;
                         
                 case "lock":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(true);
                         }else{
@@ -549,6 +563,7 @@ function chatMe(msg)
                         break;         
                         
                 case "lockskip":
+                        Funbot.DC();
                        if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.moderateLockWaitList(true);
                             setTimeout("Funbot.skip();", 100);
@@ -559,6 +574,7 @@ function chatMe(msg)
                         break;
                   
                 case "say":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1 || typeof command[1] === "undefined"){
                            API.sendChat(command[1]);
                         }else{
@@ -567,6 +583,7 @@ function chatMe(msg)
                         break;
                         
                 case "linkin":
+                        Funbot.DC();
                         if(typeof command[1] == "undefined"){
                             API.sendChat("@" + data.from + " Put a link starting off from www.");
                         }else if(command[1].toLowerCase().indexOf("plug.dj") === -1 && command[1].toLowerCase().indexOf("bug.dj") === -1 && command[1].toLowerCase().indexOf("porn") === -1 && command[1].toLowerCase().indexOf("sex") === -1){
