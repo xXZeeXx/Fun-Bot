@@ -597,6 +597,7 @@ function chatMe(msg)
                         
                 case "grab":
                 case "snag":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var addsong = ["[user] I am now grabbing current song.","[user] This song is now mine! :blush:","[user] Now adding this current music video..."];
                         r = Math.floor(Math.random() * addsong.length);
@@ -608,7 +609,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "props":
+                case "props":
+                        Funbot.DC();
                         if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         if(typeof command[1] === "undefined"){
                            API.sendChat("@"+ data.from +" just gave props to @"+ API.getDJ().username +" for playing a dope track!");
@@ -616,7 +618,8 @@ function chatMe(msg)
                         }
                         break;
                         
-                   case "songlink":
+                case "songlink":
+                        Funbot.DC();
                         if(API.getMedia().format == 1){
                             API.sendChat("@" + data.from + " " + "http://youtu.be/" + API.getMedia().cid);
                         }else{
@@ -627,7 +630,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "download":
+                case "download":
+                        Funbot();
                         if(typeof command[1] == "undefined"){
                             API.sendChat("Download your song free here: http://www.vebsi.com/");
                         }else if(command[1].indexOf("@") > -1){
@@ -637,7 +641,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "woot":
+                case "woot":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         if(typeof command[1] === "undefined"){
                            API.sendChat("One woot coming up!");
@@ -650,7 +655,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "meh":
+                case "meh":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         if(typeof command[1] === "undefined"){
                            API.sendChat("Bummer, A meh has been requested!!");
@@ -663,7 +669,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "join":
+                case "join":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         setTimeout(function(){
                         var joindj = ["[user] Time to spin a track! :speaker:","[user] Seems like i'm up!","[user] Now joinning the booth"];
@@ -676,7 +683,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "leave":
+                case "leave":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         setTimeout(function(){
                         var leavedj = ["[user] Now leaving the dj booth...","[user] Kicking me off :(","[user] Made a pic for you! http://i.imgur.com/4uVDb6f.gif  ....Loser"];
@@ -689,7 +697,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "votes":
+                case "votes":
+                        Funbot();
                         if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         API.sendChat("Users vote:  :+1: " + API.getRoomScore().positive + " | :-1: " + API.getRoomScore().negative + " | :purple_heart: " + API.getRoomScore().curates);
                             Funbot.misc.ready = false;
@@ -697,7 +706,8 @@ function chatMe(msg)
                         }
                         break;
                         
-                   case "version":
+                case "version":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         API.sendChat("Bot Version "+ Funbot.misc.version);
                             Funbot.misc.ready = false;
@@ -707,7 +717,8 @@ function chatMe(msg)
                         }
                         break;
                         
-                   case "source":
+                case "source":
+                       Funbot();
                        if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.sendChat("DJ - ɴᴇᴏɴ - TFL wrote me at github which is available here: http://goo.gl/iLRyWJ");
                             Funbot.misc.ready = false;
@@ -715,7 +726,8 @@ function chatMe(msg)
                         }
                         break;
                         
-                   case "reload":
+                case "reload":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                            API.sendChat("Now reloading script...");
                         setTimeout(function(){
@@ -729,7 +741,8 @@ function chatMe(msg)
                         }
                         break;
                         
-                   case "die":
+                case "die":
+                        Funbot();
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                            API.sendChat('Unhooking Events...');
                         setTimeout(function(){
@@ -746,7 +759,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "whywoot":
+                case "whywoot":
+                        Funbot();
                         if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.sendChat("Plug gives you 1 point for wooting the current song if you don't like the song i suggest you remain neutral");
                         }else if(command[1].indexOf("@") > -1){
@@ -760,7 +774,8 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "whymeh":
+                case "whymeh":
+                       Funbot();
                        if(API.getUser(fromID).permission < 2 || API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                             API.sendChat("Reserve Mehs for songs that are a) extremely overplayed b) off genre c) absolutely god awful or d) troll songs. ");
                         }else if(command[1].indexOf("@") > -1){
@@ -774,7 +789,7 @@ function chatMe(msg)
                         }
                         break;
  
-                   case "help":
+                case "help":
                         if(typeof command[1] == "undefined"){
                             API.sendChat("Greetings! Create a playlist and populate it with songs from either YouTube or Soundcloud. Click the 'Join Waitlist' button and wait your turn to play music.");
                                 setTimeout(function(){
@@ -792,7 +807,7 @@ function chatMe(msg)
                         }
                         break;
                     
-                   case "define":
+                case "define":
                         if(typeof command[1] == "undefined"){
                             API.sendChat("@" + data.from + " Define what?!");
                         }else if(command[1].toLowerCase().indexOf("xxx") === -1 && command[1].toLowerCase().indexOf("porn") === -1 && command[1].toLowerCase().indexOf("sex") === -1){
