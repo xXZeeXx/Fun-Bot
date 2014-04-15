@@ -856,8 +856,9 @@ function chatMe(msg)
                                 hours++;
                             }
                             hours == 0 ? response = "Running for " + minutes + "m " : response = "Running for " + hours + "h " + minutes + "m";
-                            response = response + " | Begger filter: "+ Funbot.settings.beggerFilter;
-                            response = response + " | History filter: "+ Funbot.settings.historyFilter;
+                            response = response + " | Begger Filter: "+ Funbot.settings.beggerFilter;
+                            response = response + " | History Filter: "+ Funbot.settings.historyFilter;
+                            response = response + " | Commands Filter: "+ Funbot.settings.commandFilter;
                             response = response + " | SongLimit: " + Funbot.settings.songLimit + "m";
                             response = response + " | Cooldown: " + Funbot.settings.cooldown + "s";
                             response = response + " | CPU Filter: "+ Funbot.settings.removedFilter;
