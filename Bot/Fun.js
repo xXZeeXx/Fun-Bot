@@ -579,6 +579,7 @@ function chatMe(msg)
                         break;
                         
                 case "grab":
+                case "snag":
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var addsong = ["[user] I am now grabbing current song.","[user] This song is now mine! :blush:","[user] Now adding this current music video..."];
                         r = Math.floor(Math.random() * addsong.length);
