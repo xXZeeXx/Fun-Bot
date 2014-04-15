@@ -447,12 +447,12 @@ function chatMe(msg)
                            API.sendChat("reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         }, 100);
                         setTimeout(function(){
-                           API.sendChat("add | remove | creator | status | ban | bf | cf | tbf | tcf");
+                           API.sendChat("queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
                         }, 600);
                         }else if(command[1].indexOf("@") > -1){
                             API.sendChat(command[1]+" My commands: reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         setTimeout(function(){
-                           API.sendChat("add | remove | creator | status | ban | bf | cf | tbf | tcf");
+                           API.sendChat("queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
                         }, 600);
                         }
                         break;
@@ -534,16 +534,6 @@ function chatMe(msg)
                             var username = msg.substr(msg.indexOf('@')+1);
                             var userid = getUserID(username);
                             API.moderateRemoveDJ(userid);
-                        }else{
-                            API.sendChat("This command requires staff members only!");
-                        }
-                        break;
-                        
-                case "move":
-                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1 || typeof command[1] === "undefined"){
-                            var username = msg.substr(msg.indexOf('@')+1);
-                            var userid = getUserID(username);
-                            API.moderateMoveDJ(userid, command[1]);
                         }else{
                             API.sendChat("This command requires staff members only!");
                         }
@@ -1231,7 +1221,62 @@ function chatMe(msg)
             }
         }
     });
-   
+    
+    API.on(API.CHAT, function(data){
+        if(data.message.indexOf('.set ') === 0){
+            var msg = data.message, from = data.from, fromID = data.fromID;
+            var id = data.fromID;var msg = data.message;var userfrom = data.from;
+            var command = msg.substring(1).split(' ');
+
+            if(Funbot.misc.ready || Funbot.admins.indexOf(fromID) > -1 || API.getUser(fromID).permission > 1){
+                switch(command[1]){
+                    case 'resident':
+                         var username = msg.substr(msg.indexOf('@')+1);
+                         var userid = getUserID(username);
+                            API.moderateSetRole(userid, API.ROLE.RESIDENTDJ);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                    case 'bouncer':
+                        var username = msg.substr(msg.indexOf('@')+1);
+                        var userid = getUserID(username);
+                            API.moderateSetRole(userid, API.ROLE.BOUNCER);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                    case 'manager':
+                        var username = msg.substr(msg.indexOf('@')+1);
+                        var userid = getUserID(username);
+                            API.moderateSetRole(userid, API.ROLE.MANAGER);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                    case 'cohost':
+                        var username = msg.substr(msg.indexOf('@')+1);
+                        var userid = getUserID(username);
+                            API.moderateSetRole(userid, API.ROLE.COHOST);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                    case 'host':
+                        var username = msg.substr(msg.indexOf('@')+1);
+                        var userid = getUserID(username);
+                            API.moderateSetRole(userid, API.ROLE.HOST);
+                        }else{
+                            API.sendChat("This command requires staff members only!");
+                        }
+                        break;
+                    default:
+                        API.sendChat("Can't set user to that variation!");
+                        break;
+                }
+            }
+        }
+    });
 
     API.on(API.CHAT, function(data){
         msg = data.message.toLowerCase(), chatID = data.chatID;
