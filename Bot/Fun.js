@@ -447,12 +447,12 @@ function chatMe(msg)
                            API.sendChat("reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         }, 100);
                         setTimeout(function(){
-                           API.sendChat("queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
+                           API.sendChat("set {rank} | queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
                         }, 600);
                         }else if(command[1].indexOf("@") > -1){
                             API.sendChat(command[1]+" My commands: reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
                         setTimeout(function(){
-                           API.sendChat("queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
+                           API.sendChat("set {rank} | queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
                         }, 600);
                         }
                         break;
