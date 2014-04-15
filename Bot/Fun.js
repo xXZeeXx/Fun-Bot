@@ -1231,6 +1231,7 @@ function chatMe(msg)
             if(Funbot.misc.ready || Funbot.admins.indexOf(fromID) > -1 || API.getUser(fromID).permission > 1){
                 switch(command[1]){
                     case 'resident':
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                          var username = msg.substr(msg.indexOf('@')+1);
                          var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.RESIDENTDJ);
@@ -1239,6 +1240,7 @@ function chatMe(msg)
                         }
                         break;
                     case 'bouncer':
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var username = msg.substr(msg.indexOf('@')+1);
                         var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.BOUNCER);
@@ -1247,6 +1249,7 @@ function chatMe(msg)
                         }
                         break;
                     case 'manager':
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var username = msg.substr(msg.indexOf('@')+1);
                         var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.MANAGER);
@@ -1255,6 +1258,7 @@ function chatMe(msg)
                         }
                         break;
                     case 'cohost':
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var username = msg.substr(msg.indexOf('@')+1);
                         var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.COHOST);
@@ -1263,6 +1267,7 @@ function chatMe(msg)
                         }
                         break;
                     case 'host':
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                         var username = msg.substr(msg.indexOf('@')+1);
                         var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.HOST);
