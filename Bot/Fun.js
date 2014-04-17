@@ -451,18 +451,9 @@ function chatMe(msg)
                 case "command":
                 case "commands":
                         if(typeof command[1] == "undefined"){
-                            API.sendChat(".{commands} Mention is included!");
-                        setTimeout(function(){
-                           API.sendChat("reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
-                        }, 100);
-                        setTimeout(function(){
-                           API.sendChat("set {rank} | queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
-                        }, 600);
+                            API.sendChat(data.from+" My commands can be found here: http://goo.gl/hJ8WJk");
                         }else if(command[1].indexOf("@") > -1){
-                            API.sendChat(command[1]+" My commands: reward | reload | die | grab | flipcoin | catfact | dogfact | hug | 8ball | punish | fortune | songlink | download | help | whywoot | whymeh | props | votes | woot | meh | skip | say | version | userstats | mystats | source");
-                        setTimeout(function(){
-                           API.sendChat("set {rank} | queup | quedown | add | remove | creator | status | ban | bf | cf | tbf | tcf");
-                        }, 600);
+                            API.sendChat(command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
                         }
                         break;
                 
