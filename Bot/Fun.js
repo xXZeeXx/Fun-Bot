@@ -1308,10 +1308,10 @@ function chatMe(msg)
                 switch(command[1]){
                     
                     case 'position':
-                        if(API.getUser(fromID).permission > 1 || HipHopBot.admins.indexOf(fromID) > -1 || typeof command[5] === "undefined"){
+                        if(API.getUser(fromID).permission > 1 || HipHopBot.admins.indexOf(fromID) > -1 || typeof command[1] === "undefined"){
                          var username = msg.substr(msg.indexOf('@')+1);
                          var userid = getUserID(username);
-                            API.moderateMoveDJ(userid, command[5]);
+                            API.moderateMoveDJ(userid, command[1]);
                         }else{
                             API.sendChat("This command requires staff members only!");
                         }
