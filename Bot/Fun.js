@@ -1299,7 +1299,6 @@ function chatMe(msg)
     });
 
     API.on(API.CHAT, function(data){
-        var from = data.from;
         var fromID = data.fromID;
         msg = data.message.toLowerCase(), chatID = data.chatID;
 
