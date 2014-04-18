@@ -1299,14 +1299,17 @@ function chatMe(msg)
     });
 
     API.on(API.CHAT, function(data){
+        var from = data.from;
+        var fromID = data.fromID;
         msg = data.message.toLowerCase(), chatID = data.chatID;
-        
+
         for(var i = 0; i < Funbot.filters.beggerWords.length; i++){
             if(msg.indexOf(Funbot.filters.beggerWords[i].toLowerCase()) > -1 && Funbot.settings.beggerFilter){
                 API.moderateDeleteChat(chatID);
-                responses = ["@{beggar} Ask for fans again and i will ban you. ಠ_ಠ","Good idea @{beggar}!  Asking for fans... That's so yesterday!", "Guys @{beggar} asked us to fan him!  Lets all totally do it! ಠ_ಠ", "srsly @{beggar}? ಠ_ಠ", "@{beggar}.  Earning his fans the good old fashioned way.  Hard work and elbow grease.  A true american."];
+                responses = ["@{beggar}, Asking for fans isn't allowed in here, You're now being banned for 1hr!","Next time read our lobby's rule @{beggar}, Asking for fans isn't allowed! ಠ_ಠ","@{beggar}, You're now banned for one hour. Asking for fans isn't allowed! ಠ_ಠ"];
                 r = Math.floor(Math.random() * responses.length);
                 API.sendChat(responses[r].replace("{beggar}", data.from));
+                API.moderateBanUser(fromID, 0, API.BAN.HOUR);
             }
             if(msg.indexOf(Funbot.filters.commandWords[i].toLowerCase()) > -1 && Funbot.settings.commandFilter){
                API.moderateDeleteChat(chatID);
