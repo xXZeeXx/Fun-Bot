@@ -1311,6 +1311,8 @@ function chatMe(msg)
                 setTimeout(function(){
                 API.moderateBanUser(fromID, 0, API.BAN.HOUR);
                 }, 1500);
+            }else if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
+                API.sendChat("Darn... I would have banned you but you're just too damn sexy!");
             }
             if(msg.indexOf(Funbot.filters.commandWords[i].toLowerCase()) > -1 && Funbot.settings.commandFilter){
                API.moderateDeleteChat(chatID);
