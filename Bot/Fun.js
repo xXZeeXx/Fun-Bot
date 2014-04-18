@@ -1308,7 +1308,7 @@ function chatMe(msg)
                 r = Math.floor(Math.random() * responses.length);
                 API.sendChat(responses[r].replace("{beggar}", data.from));
                 setTimeout(function(){
-                API.moderateBanUser(fromID, "for being and idiot", API.BAN.HOUR);
+                API.moderateBanUser(fromID, hello, API.BAN.HOUR);
                 }, 1500);
             }
             if(msg.indexOf(Funbot.filters.commandWords[i].toLowerCase()) > -1 && Funbot.settings.commandFilter){
