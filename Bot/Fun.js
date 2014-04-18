@@ -435,6 +435,27 @@ function chatMe(msg)
         API.sendChat(msg);
 };
 
+
+botMethods.djAdvanceEvent = function(data){
+    clearTimeout(Funbot.pubVars.skipOnExceed);
+    var song = API.getMedia();
+            if(botMethods.checkHistory() !== -1){
+            if(API.getUser().permission < 2){
+                 API.sendChat("This song is in the history! You should make me a mod so that I could skip it!");
+            }else if(API.getUser().permission > 1){
+                 API.sendChat("@"+ API.getDJ().username +", playing songs that are in the history isn't allowed, please check next time! Skipping..");
+                 API.moderateForceSkip();
+            }else{
+            setTimeout(function(){
+            if(botMethods.checkHistory() !== 1){
+                 API.sendChat("@"+ API.getDJ().username +", playing songs that are in the history isn't allowed, please check next time! Skipping..");
+                 API.moderateForceSkip();
+               };
+            }, 100);
+        }
+    }
+};
+
     API.on(API.CHAT, function(data){
         if(data.message.indexOf('.') === 0){
             var msg = data.message, from = data.from, fromID = data.fromID;
@@ -836,7 +857,7 @@ function chatMe(msg)
                         break;
                         
                 /*case "songLimit":
-                       if(API.getUser(fromID).permission > 1 || Countrybot.admins.indexOf(fromID) > -1){
+                       if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                        if(typeof command[1] == "undefined"){
                        API.sendChat("Hey smart guy i need a number");
                        }else if(isFinite(String(command[1]))){
