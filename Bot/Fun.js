@@ -1304,6 +1304,7 @@ function chatMe(msg)
 
         for(var i = 0; i < Funbot.filters.beggerWords.length; i++){
             if(msg.indexOf(Funbot.filters.beggerWords[i].toLowerCase()) > -1 && Funbot.settings.beggerFilter){
+            if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                 API.moderateDeleteChat(chatID);
                 responses = ["@{beggar}, Asking for fans isn't allowed in here, You're now being banned for 1hr!","Next time read our lobby's rule @{beggar}, Asking for fans isn't allowed! ಠ_ಠ","@{beggar}, You're now banned for one hour. Asking for fans isn't allowed! ಠ_ಠ"];
                 r = Math.floor(Math.random() * responses.length);
@@ -1311,6 +1312,8 @@ function chatMe(msg)
                 setTimeout(function(){
                 API.moderateBanUser(fromID, 0, API.BAN.HOUR);
                 }, 1500);
+            }
+                API.sendChat(data.from+" I would have banned you but you're just too damn pretty!");
             }
             if(msg.indexOf(Funbot.filters.commandWords[i].toLowerCase()) > -1 && Funbot.settings.commandFilter){
                API.moderateDeleteChat(chatID);
