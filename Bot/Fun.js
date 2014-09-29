@@ -881,7 +881,7 @@ function chatMe(msg)
                                     API.sendChat("@" + data.from + ","+ Funbot.misc.fortune[randomFortune]);
                                     break;
                                 case 1:
-                                    API.sendChat("@" + data.from + ","+ Funbot.misc.fortune[randomFortune]);
+                                    API.sendChat("@"+ data.from + ","+ Funbot.misc.fortune[randomFortune]);
                                     break;
                             }
                         }else{
@@ -1409,7 +1409,7 @@ function chatMe(msg)
  
     setTimeout(function(){
         SC.initialize({
-            client_id: 'eae62c8e7a30564e9831b9e43f1d484a'
+            client_id: '23025049683040'
         });
     }, 3000);
  
