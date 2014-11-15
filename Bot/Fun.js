@@ -300,7 +300,6 @@ API.on(API.DJ_ADVANCE, listener);
 API.on(API.DJ_ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
 API.on(API.DJ_ADVANCE, DJ_ADVANCE);
-$('#playback').hide();
 $('#audience').hide();
 API.setVolume(0);
 
@@ -333,7 +332,6 @@ API.off(API.CURATE_UPDATE);
 API.off(API.DJ_ADVANCE);
 API.off(API.VOTE_UPDATE);
 API.off(API.CHAT);
-$('#playback').show();
 $('#audience').show();
 API.setVolume(15);
 }, 100);
