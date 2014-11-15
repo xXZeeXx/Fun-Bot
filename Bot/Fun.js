@@ -48,7 +48,7 @@ toSave = {};
 toSave.settings = Funbot.settings;
 toSave.moderators = Funbot.moderators;
  
-Funbot.misc.version = "2.0.3";
+Funbot.misc.version = "2.0.5";
 Funbot.misc.ready = true;
 var songBoundary = 60 * 10;
 var announcementTick = 60 * 10;
@@ -453,7 +453,7 @@ function chatMe(msg)
  
                 case "command":
                 case "commands":
-                       if(API.getUser(fromID).permission < 2) {
+                       if(API.getUser(fromID).permission < 2){
                             API.sendChat(data.from+" My commands can be found here: http://goo.gl/hJ8WJk");
                         }else if(command[1].indexOf("@") > -1){
                             API.sendChat(command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
