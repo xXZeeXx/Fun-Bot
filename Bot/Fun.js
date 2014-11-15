@@ -453,7 +453,7 @@ function chatMe(msg)
  
                 case "command":
                 case "commands":
-                        {
+                       if(typeof command[1]) {
                             API.sendChat(data.from+" My commands can be found here: http://goo.gl/hJ8WJk");
                         }else if(command[1].indexOf("@") > -1){
                             API.sendChat(command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
