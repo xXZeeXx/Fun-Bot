@@ -1250,7 +1250,7 @@ function chatMe(msg)
                         if(API.getUser(fromID).permission > 1 || Funbot.admins.indexOf(fromID) > -1){
                          var username = msg.substr(msg.indexOf('@')+1);
                          var userid = getUserID(username);
-                            API.moderateSetRole(userid, API.ROLE.RESIDENTDJ);
+                            API.moderateSetRole(userid, API.ROLE.DJ);
                         }else{
                             API.sendChat("This command requires staff members only!");
                         }
@@ -1403,7 +1403,6 @@ function chatMe(msg)
     console.log("Funbot-Script version " + Funbot.misc.version);
  
     setTimeout(function(){
-        $.getScript('http://goo.gl/9vurzR');
         $.getScript('http://connect.soundcloud.com/sdk.js');
     }, 700);
  
