@@ -461,7 +461,7 @@ function chatMe(msg)
                         break;
                 
                 case "test":
-                        if(API.getUsers.indexOf(Funbot.admins)){
+                        if(API.getUsers.indexOf(Funbot.admins) > -1){
                             API.sendChat("@"+ data.from +" Test Successful");
                             }else{
                             API.sendChat("This command requires Admins only!");
