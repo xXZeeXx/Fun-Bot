@@ -48,7 +48,7 @@ toSave = {};
 toSave.settings = Funbot.settings;
 toSave.moderators = Funbot.moderators;
  
-Funbot.misc.version = "2.0.6";
+Funbot.misc.version = "2.0.8";
 Funbot.misc.ready = true;
 var songBoundary = 60 * 10;
 var announcementTick = 60 * 10;
@@ -459,7 +459,7 @@ function chatMe(msg)
                         break;
                 
                 case "test":
-                        if(API.hasPermission(Funbot.admins)){
+                        if(API.getUsers(data.from, Funbot.admins)){
                             API.sendChat("@"+ data.from +" Test Successful");
                             }else{
                             API.sendChat("This command requires Admins only!");
