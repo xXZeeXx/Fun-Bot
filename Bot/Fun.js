@@ -304,11 +304,11 @@ Funbot.pubVars.command = false;
  
 Array.prototype.remove=function(){var c,f=arguments,d=f.length,e;while(d&&this.length){c=f[--d];while((e=this.indexOf(c))!==-1){this.splice(e,1)}}return this};
 if(window.location.hostname === "plug.dj"){window.setInterval(sendAnnouncement, 1000 * announcementTick);
-API.on(API.DJ_ADVANCE, djAdvanceEvent);
-API.on(API.DJ_ADVANCE, listener);
-API.on(API.DJ_ADVANCE, woot);
+API.on(API.API.ADVANCE, djAdvanceEvent);
+API.on(API.API.ADVANCE, listener);
+API.on(API.API.ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
-API.on(API.DJ_ADVANCE, DJ_ADVANCE);
+API.on(API.API.ADVANCE, API.ADVANCE);
 $('#audience').hide();
 API.setVolume(0);
 
@@ -337,8 +337,8 @@ API.off(API.USER_JOIN);
 API.off(API.USER_LEAVE);
 API.off(API.USER_SKIP);
 API.off(API.USER_FAN);
-API.off(API.CURATE_UPDATE);
-API.off(API.DJ_ADVANCE);
+API.off(API.GRAB_UPDATE);
+API.off(API.ADVANCE);
 API.off(API.VOTE_UPDATE);
 API.off(API.CHAT);
 $('#audience').show();
@@ -460,11 +460,7 @@ function chatMe(msg)
  
                 case "command":
                 case "commands":
-                       if(API.getUsers(data.from) > 0){
-                            API.sendChat(data.from+" My commands can be found here: http://goo.gl/hJ8WJk");
-                        }else if(command[1].indexOf("@") > 1){
-                            API.sendChat(command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
-                        }
+                API.sendChat(data.from+" My commands can be found here: http://goo.gl/hJ8WJk");
                         break;
                 
                 case "test":
@@ -1395,7 +1391,7 @@ function chatMe(msg)
     });
     
     
-    function DJ_ADVANCE(data){
+    function API.ADVANCE(data){
         $.getJSON('http://gdata.youtube.com/feeds/api/videos/'+data.media.cid+'?v=2&alt=jsonc&callback=?', function(json){response = json.data});
         setTimeout(function(){
             if(typeof response === 'undefined' && data.media.format != 2 && Funbot.settings.removedFilter){
