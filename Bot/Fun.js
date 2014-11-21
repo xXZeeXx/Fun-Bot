@@ -74,6 +74,15 @@ Funbot.settings.removedFilter = true;
 // Admins ID
 Funbot.admins = ["50aeaeb6c3b97a2cb4c25bd2"];
 
+// ROLE PERMISSION
+plugAdmin = "API.ROLE.ADMIN";
+plugBA = "API.ROLE.AMBASSADOR";
+plugHost = "API.ROLE.HOST";
+plugCohost = "API.ROLE.COHOST";
+plugManager = "API.ROLE.MANAGER";
+plugBouncer = "API.ROLE.BOUNCER";
+plugDj= "API.ROLE.DJ";
+
 // Random announcements.
 var announcements = 
 [""];
@@ -446,12 +455,12 @@ function chatMe(msg)
                     command[1] = command[1] + ' ' + command[i];
                 }
             }
-            if(Funbot.misc.ready || Funbot.admins.indexOf(fromID) > -1 || API.getUser(data.fromID).permission > 1 || API.getUser(fromID).permission < 2){
+            if(Funbot.misc.ready || API.getUsers(data.from, Funbot.admins) || API.hasPermission(plugAdmin) || API.hasPermission(plugBA) || API.hasPermission(plugHost) || API.hasPermission(plugCohost) || API.hasPermission(plugManager) || API.hasPermission(plugBouncer) || API.hasPermission(plugDj)){
                 switch(command[0].toLowerCase()){
  
                 case "command":
                 case "commands":
-                       if(API.getUser(fromID).permission > 1){
+                       if(API.getUsers(data.from) > 0){
                             API.sendChat(data.from+" My commands can be found here: http://goo.gl/hJ8WJk");
                         }else if(command[1].indexOf("@") > 1){
                             API.sendChat(command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
