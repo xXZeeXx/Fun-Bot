@@ -467,7 +467,7 @@ function chatMe(msg)
                         break;
                         
                 case "ping":
-                        if(API.hasPermission(undefined, API.ROLE.BOUNCER)){
+                        if(API.hasPermission(API.ROLE.BOUNCER)){
                             API.sendChat("@"+ data.from +" Pong!");
                             }else{
                             API.sendChat("This command requires staff members only!");
