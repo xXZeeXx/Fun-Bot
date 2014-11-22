@@ -507,7 +507,7 @@ function chatMe(msg)
                         
                 case "add":
                         if(API.getUsers(data.un) || API.getUsers(data.un, Funbot.admins)){
-                            API.moderateAddDJ(data.unID);
+                            API.moderateAddDJ(data.un);
                         }
                         break;
                         
