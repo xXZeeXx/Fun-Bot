@@ -464,8 +464,6 @@ function chatMe(msg)
                 case "commands":
                         if(API.getUser(fromID).permission < 2 || API.getUsers(data.un, Funbot.admins)){
                             API.sendChat("@"+data.un+" My commands can be found here: http://goo.gl/hJ8WJk");
-                        }else if(typeof command[1] === "undefined"){
-                            API.sendChat("@"+command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
                         }
                         break;
                 
@@ -1395,7 +1393,8 @@ function chatMe(msg)
         $.getJSON('http://gdata.youtube.com/feeds/api/videos/'+data.media.cid+'?v=2&alt=jsonc&callback=?', function(json){response = json.data});
         setTimeout(function(){
             if(typeof response === 'undefined' && data.media.format != 2 && Funbot.settings.removedFilter){
-                API.sendChat('/me This video may be unavailable!!');
+                API.sendChat("@"+API.getDJ().username+" This video is unavailable!!");
+                API.moderateForceSkip();
             }
         }, 1500);
  
