@@ -1329,7 +1329,7 @@ function chatMe(msg)
         if(API.getUsers(data.from, PlugMod) || API.getUsers(data.from, PlugMod) || API.getUsers(data.from, Funbot.admins)){
             if(msg.indexOf("how are you bot") !== -1 || msg.indexOf("bot how are you") !== -1 || msg.indexOf("hru bot") !== -1 || msg.indexOf("bot hru") !== -1 || msg.indexOf("doing good bot?") !== -1 || msg.indexOf("bot doing good?") !== -1 || msg.indexOf("hows it going bot") !== -1 || msg.indexOf("bot how is it going") !== -1 || msg.indexOf("how you doing bot") !== -1 || msg.indexOf("bot how you doing") !== -1){
                 var HRUMsg = ["I'm good thanks for asking :)","Doing great yo and yourself?","All Good Mate!","I'm good thanks for asking!","Yeee i'm cool and youself yo?"];
-                API.sendChat("@" + API.getUsers(data.from, username) + " " + HRUMsg[Math.floor(Math.random() * HRUMsg.length)]);
+                API.sendChat("@" + API.getUsers(data.from) + " " + HRUMsg[Math.floor(Math.random() * HRUMsg.length)]);
                     Funbot.misc.ready = false;
                     setTimeout(function(){ Funbot.misc.ready = true; }, Funbot.settings.cooldown * 1000);
                 }
