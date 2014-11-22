@@ -463,8 +463,8 @@ function chatMe(msg)
                 case "command":
                 case "commands":
                         if(API.getUser(fromID).permission < 2 || API.getUsers(data.un, Funbot.admins)){
-                            API.sendChat(data.un+" My commands can be found here: http://goo.gl/hJ8WJk");
-                        }else if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins) || typeof command[1] === "undefined"){
+                            API.sendChat("@"+data.un+" My commands can be found here: http://goo.gl/hJ8WJk");
+                        }else if(typeof command[1] === "undefined"){
                             API.sendChat("@"+command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
                         }
                         break;
