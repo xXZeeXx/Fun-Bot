@@ -1320,7 +1320,7 @@ function chatMe(msg)
     
     API.on(API.CHAT, function(data){
         var msg = data.message.toLowerCase(),
-        var chatID = data.chatID, 
+        var chatID = data.chatID; 
         var fromID = data.fromID;
         var userfrom = data.from;
         if(API.getUsers(data.from, PlugMod) || API.getUsers(data.from, PlugMod) || API.getUsers(data.from, Funbot.admins)){
