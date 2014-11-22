@@ -467,7 +467,7 @@ function chatMe(msg)
                 
                 case "test":
                         if(API.getUsers(data.from, Funbot.admins)){
-                            API.sendChat("@"+ + data.un +" Test Successful");
+                            API.sendChat("@"+ data.un +" Test Successful");
                             }else{
                             API.sendChat("This command requires Admins only!");
                         }
