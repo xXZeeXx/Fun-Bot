@@ -1394,7 +1394,7 @@ function chatMe(msg)
         setTimeout(function(){
             if(typeof response === 'undefined' && data.media.format != 2 && Funbot.settings.removedFilter){
                 API.sendChat("@"+API.getDJ().username+" This video is unavailable!!");
-                API.moderateForceSkip();
+                setTimeout("Funbot.skip();", 100);
             }
         }, 1500);
  
