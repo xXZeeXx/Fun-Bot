@@ -464,8 +464,8 @@ function chatMe(msg)
                 case "commands":
                         if(API.getUsers(data.unID)){
                             API.sendChat(data.un+" My commands can be found here: http://goo.gl/hJ8WJk");
-                        }else if(command[1].substr("@") > -1){
-                            API.sendChat(command[2]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
+                        }else if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins) || typeof command[1] === "undefined"){
+                            API.sendChat("@"+command[1]+" My commands can be founnd here: http://goo.gl/hJ8WJk");
                         }
                         break;
                 
