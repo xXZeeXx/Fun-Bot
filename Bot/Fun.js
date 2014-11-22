@@ -1235,7 +1235,9 @@ function chatMe(msg)
     API.on(API.CHAT, function(data){
         if(data.message.indexOf('.set ') === 0){
             var msg = data.message, from = data.from, fromID = data.fromID;
-            var id = data.fromID;var msg = data.message;var userfrom = data.from;
+            var id = data.fromID;
+            var msg = data.message;
+            var userfrom = data.from;
             var command = msg.substring(1).split(' ');
 
             if(Funbot.misc.ready || API.getUsers(data.from, Funbot.admins) || API.getUsers(data.from, PlugMod)){
@@ -1317,7 +1319,10 @@ function chatMe(msg)
     
     
     API.on(API.CHAT, function(data){
-        msg = data.message.toLowerCase(), chatID = data.chatID, fromID = data.fromID;
+        var msg = data.message.toLowerCase(),
+        var chatID = data.chatID, 
+        var fromID = data.fromID;
+        var userfrom = data.from;
         if(API.getUsers(data.from, PlugMod) || API.getUsers(data.from, PlugMod) || API.getUsers(data.from, Funbot.admins)){
             if(msg.indexOf('hello bot') !== -1 || msg.indexOf('bot hello') !== -1 || msg.indexOf('hi bot') !== -1 || msg.indexOf('bot hi') !== -1 || msg.indexOf('sup bot') !== -1 || msg.indexOf('bot sup') !== -1 || msg.indexOf('hey bot') !== -1 || msg.indexOf('bot hey') !== -1 || msg.indexOf('howdy bot') !== -1 || msg.indexOf('bot howdy') !== -1 || msg.indexOf('aye bot') !== -1 || msg.indexOf('yo bot') !== -1 || msg.indexOf('waddup bot') !== -1 || msg.indexOf('bot waddup') !== -1){
                 var HelloMsg = ["Hey!","Oh hey there!","Good day sir!","Hi","Howdy!","Waddup!"];
@@ -1329,7 +1334,7 @@ function chatMe(msg)
         if(API.getUsers(data.from, PlugMod) || API.getUsers(data.from, PlugMod) || API.getUsers(data.from, Funbot.admins)){
             if(msg.indexOf("how are you bot") !== -1 || msg.indexOf("bot how are you") !== -1 || msg.indexOf("hru bot") !== -1 || msg.indexOf("bot hru") !== -1 || msg.indexOf("doing good bot?") !== -1 || msg.indexOf("bot doing good?") !== -1 || msg.indexOf("hows it going bot") !== -1 || msg.indexOf("bot how is it going") !== -1 || msg.indexOf("how you doing bot") !== -1 || msg.indexOf("bot how you doing") !== -1){
                 var HRUMsg = ["I'm good thanks for asking :)","Doing great yo and yourself?","All Good Mate!","I'm good thanks for asking!","Yeee i'm cool and youself yo?"];
-                API.sendChat("@" + API.getUsers(data.from) + " " + HRUMsg[Math.floor(Math.random() * HRUMsg.length)]);
+                API.sendChat("@"+ data.from +" " + HRUMsg[Math.floor(Math.random() * HRUMsg.length)]);
                     Funbot.misc.ready = false;
                     setTimeout(function(){ Funbot.misc.ready = true; }, Funbot.settings.cooldown * 1000);
                 }
