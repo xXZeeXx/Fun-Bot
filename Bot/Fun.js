@@ -1319,10 +1319,10 @@ function chatMe(msg)
     
     
     API.on(API.CHAT, function(data){
-        var msg = data.message.toLowerCase(),
-        var chatID = data.chatID; 
-        var fromID = data.fromID;
-        var userfrom = data.from;
+        msg = data.message.toLowerCase(),
+        chatID = data.chatID; 
+        fromID = data.fromID;
+        userfrom = data.from;
         if(API.getUsers(data.from, PlugMod) || API.getUsers(data.from, PlugMod) || API.getUsers(data.from, Funbot.admins)){
             if(msg.indexOf('hello bot') !== -1 || msg.indexOf('bot hello') !== -1 || msg.indexOf('hi bot') !== -1 || msg.indexOf('bot hi') !== -1 || msg.indexOf('sup bot') !== -1 || msg.indexOf('bot sup') !== -1 || msg.indexOf('hey bot') !== -1 || msg.indexOf('bot hey') !== -1 || msg.indexOf('howdy bot') !== -1 || msg.indexOf('bot howdy') !== -1 || msg.indexOf('aye bot') !== -1 || msg.indexOf('yo bot') !== -1 || msg.indexOf('waddup bot') !== -1 || msg.indexOf('bot waddup') !== -1){
                 var HelloMsg = ["Hey!","Oh hey there!","Good day sir!","Hi","Howdy!","Waddup!"];
