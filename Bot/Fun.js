@@ -312,6 +312,7 @@ API.on(API.ADVANCE, DJADVANCE)
 API.on(API.ADVANCE, listener);
 API.on(API.ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
+$('#playback').hide();
 API.setVolume(0);
 
 function woot(){
@@ -343,6 +344,7 @@ API.off(API.GRAB_UPDATE);
 API.off(API.ADVANCE);
 API.off(API.VOTE_UPDATE);
 API.off(API.CHAT);
+$('#playback').show();
 API.setVolume(15);
 }, 100);
 };
