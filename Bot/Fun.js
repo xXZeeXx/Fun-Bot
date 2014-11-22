@@ -1239,7 +1239,6 @@ function chatMe(msg)
             var msg = data.message;
             var userfrom = data.from;
             var command = msg.substring(1).split(' ');
-
             if(Funbot.misc.ready || API.getUsers(data.from, Funbot.admins) || API.getUsers(data.from, PlugMod)){
                 switch(command[1]){
                     case 'none':
@@ -1280,7 +1279,7 @@ function chatMe(msg)
                         }
                         break;
                     case 'cohost':
-                        if(API.hasPermission() || API.getUsers(data.from, Funbot.admins)){
+                        if(API.hasPermission(data.from, PlugMod) || API.getUsers(data.from, Funbot.admins)){
                         var username = msg.substr(msg.indexOf('@')+1);
                         var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.COHOST);
