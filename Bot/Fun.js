@@ -1252,10 +1252,9 @@ function chatMe(msg)
                             API.sendChat("This command requires staff members only!");
                         }
                         break;
-                    
                     case 'resident':
                         if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
-                         var username = msg.substr(msg.indexOf('@')+1);
+                         var username = msg.substr(command[1]);
                          var userid = getUserID(username);
                             API.moderateSetRole(userid, API.ROLE.DJ);
                         }else{
