@@ -308,7 +308,7 @@ Funbot.pubVars.command = false;
 Array.prototype.remove=function(){var c,f=arguments,d=f.length,e;while(d&&this.length){c=f[--d];while((e=this.indexOf(c))!==-1){this.splice(e,1)}}return this};
 if(window.location.hostname === "plug.dj"){window.setInterval(sendAnnouncement, 1000 * announcementTick);
 API.on(API.ADVANCE, djAdvanceEvent);
-API.on(API.ADVANCE, DJADVANCE)
+API.on(API.ADVANCE, DJADVANCE);
 API.on(API.ADVANCE, listener);
 API.on(API.ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
