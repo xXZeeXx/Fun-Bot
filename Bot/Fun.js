@@ -519,7 +519,7 @@ function chatMe(msg)
                         break;
                         
                 case "ban":
-                       if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
+                       if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins) || typeof command[1] == "undefined"){
                             var username = msg.indexOf('@')+1;
                             var userid = getUserID(username);
                             API.moderateBanUser(userid, 0, API.BAN.HOUR);
@@ -529,7 +529,7 @@ function chatMe(msg)
                         break;
                         
                 case "queup":
-                       if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
+                       if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins) || typeof command[1] == "undefined"){
                             var username = msg.indexOf('@')+1;
                             var userid = getUserID(username);
                             API.moderateAddDJ(userid);
