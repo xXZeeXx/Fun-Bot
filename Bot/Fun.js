@@ -308,7 +308,6 @@ Funbot.pubVars.command = false;
 Array.prototype.remove=function(){var c,f=arguments,d=f.length,e;while(d&&this.length){c=f[--d];while((e=this.indexOf(c))!==-1){this.splice(e,1)}}return this};
 if(window.location.hostname === "plug.dj"){window.setInterval(sendAnnouncement, 1000 * announcementTick);
 API.on(API.ADVANCE, djAdvanceEvent);
-API.on(API.ADVANCE, DJADVANCE);
 API.on(API.ADVANCE, listener);
 API.on(API.ADVANCE, woot);
 API.on(API.USER_JOIN, UserJoin);
@@ -521,7 +520,7 @@ function chatMe(msg)
                         
                 case "ban":
                        if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
-                            var username = msg.substr(msg.indexOf('@')+1);
+                            var username = msg.indexOf('@')+1;
                             var userid = getUserID(username);
                             API.moderateBanUser(userid, 0, API.BAN.HOUR);
                         }else{
@@ -531,7 +530,7 @@ function chatMe(msg)
                         
                 case "queup":
                        if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
-                            var username = msg.substr(msg.indexOf('@')+1);
+                            var username = msg.indexOf('@')+1;
                             var userid = getUserID(username);
                             API.moderateAddDJ(userid);
                         }else{
@@ -1386,19 +1385,6 @@ function chatMe(msg)
     
         }
     });
-    
-    
-    function DJADVANCE(data){
-        $.getJSON('http://gdata.youtube.com/feeds/api/videos/'+data.media.cid+'?v=2&alt=jsonc&callback=?', function(json){response = json.data});
-        setTimeout(function(){
-            if(typeof response === 'undefined' && data.media.format != 2 && Funbot.settings.removedFilter){
-                API.sendChat("@"+API.getDJ().username+" This video is unavailable!!");
-                setTimeout("Funbot.skip();", 100);
-            }
-        }, 1500);
- 
-        cancel = false;
-    }
  
     botMethods.loadStorage();
     console.log("Funbot-Script version " + Funbot.misc.version);
