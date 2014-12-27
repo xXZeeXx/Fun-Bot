@@ -1335,8 +1335,8 @@ function chatMe(msg)
         ];
         var outputMessages = [
         	['/me ¬_¬', '/me ಠ_ಠ', '/me ლ(ಥ益ಥლ'], // "Misc" Messages
-        	['Hey!', 'Oh hey there!', 'Good day sir!', 'Hi', 'Howdy!', 'Waddup!'], // Hello Messages
-        	['I\'m good thanks for asking :)', 'Doing great yo and yourself?', 'All Good Mate!', 'I\'m good thanks for asking!', 'Yeee i\'m cool and youself yo?'], // "Hru" Messages
+			['Hey!', 'Oh hey there!', 'Good day sir!', 'Hi', 'Howdy!', 'Waddup!'], // Hello Messages
+			['I\'m good thanks for asking :)', 'Doing great yo and yourself?', 'All Good Mate!', 'I\'m good thanks for asking!', 'Yeee i\'m cool and youself yo?'], // "Hru" Messages
 			["You're welcome! :D","Your always welcome bro!","No prob man.."], // "TY" Messages
 			['Fuck yeahh!! :D I love you too baby!', 'I love you too ;).....   Sex?... JK you don\'t want this big thing ;)', 'I love you too o.0', 'Sweet.. Love you to ;)'], // "Love" Messages
 			['Nah.. I don\'t need another fuck after giving your mom one last night.', '</input fuck> Jk... Fuck you too', '< Test fuck >.. Sorry 0% fucks were given by me.'], // "Fuck" Messages
