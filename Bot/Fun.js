@@ -48,7 +48,7 @@ toSave = {};
 toSave.settings = Funbot.settings;
 toSave.moderators = Funbot.moderators;
  
-Funbot.misc.version = "3.0.1";
+Funbot.misc.version = "3.0.12";
 Funbot.misc.ready = true;
 var songBoundary = 60 * 10;
 var announcementTick = 60 * 10;
@@ -72,7 +72,7 @@ Funbot.settings.ruleSkip = true;
 Funbot.settings.removedFilter = true;
 
 // Admins ID
-Funbot.admins = ["3852632"];
+Funbot.admins = ["3852632", '5448898'];
 
 // ROLE PERMISSION
 plugAdmin = "API.ROLE.ADMIN";
@@ -115,7 +115,7 @@ var blockedArtists = [
 
 // Filter Keywords
 Funbot.filters.beggerWords = ["fanme","fan me","fan4fan","fan 4 fan","fan pls","fans please","more fan","fan back","give me fans","gimme fans","need fan","fan for fan"];
-Funbot.filters.commandWords = [".linkin",".say",".test",".ping",".marco",".reward",".add",".addsong",".flipcoin",".catfact",".dogfact",".hug",".8ball",".fortune",".songlink",".download",".help",".whywoot",".whymeh",".props",".votes",".woot",".meh",".version",".userstats @",".mystats",".source",".roomstats",".roomstats2",".register",".join",".leave",".roll"];
+Funbot.filters.commandWords = ['.command', '.commands', ".linkin",".say",".test",".ping",".marco",".reward",".add",".addsong",".flipcoin",".catfact",".dogfact",".hug",".8ball",".fortune",".songlink",".download",".help",".whywoot",".whymeh",".props",".votes",".woot",".meh",".version",".userstats @",".mystats",".source",".roomstats",".roomstats2",".register",".join",".leave",".roll"];
 
 
 // Fun misc
@@ -1297,31 +1297,27 @@ function chatMe(msg)
 
     
     API.on(API.CHAT, function(data){ // Chat Function #2
-        var fromID = data.unID;
-        msg = data.message.toLowerCase(), chatID = data.chatID;
-        for(var i = 0; i < Funbot.filters.beggerWords.length; i++){
-            if(msg.indexOf(Funbot.filters.beggerWords[i].toLowerCase()) > -1 && Funbot.settings.beggerFilter){
-                API.moderateDeleteChat(chatID);
-                responses = ["@{beggar}, Asking for fans isn't allowed in here, You're now being banned for 1hr!","Next time read our lobby's rule @{beggar}, Asking for fans isn't allowed! ಠ_ಠ","@{beggar}, You're now banned for one hour. Asking for fans isn't allowed! ಠ_ಠ"];
-                r = Math.floor(Math.random() * responses.length);
-                API.sendChat(responses[r].replace("{beggar}", data.un));
-                setTimeout(function(){
-                API.moderateBanUser(fromID, API.BAN.HOUR);
-                }, 1500);
-            }
-            if(msg.indexOf(Funbot.filters.commandWords[i].toLowerCase()) > -1 && Funbot.settings.commandFilter){
-               API.moderateDeleteChat(chatID);
-            }
-        }
- 
+        var fromID = data.uid,
+	        msg = data.message.toLowerCase(), 
+	        chatID = data.cid,
+	        responses = ['@{beggar}, Asking for fans isn\'t allowed in here, You\'re now being banned for 1hr!', 'Next time read our lobby\'s rule @{beggar}, Asking for fans isn\'t allowed! ಠ_ಠ', '@{beggar}, You\'re now banned for one hour. Asking for fans isn\'t allowed! ಠ_ಠ'],
+	        randomInt = Math.floor(Math.random() * responses.length);
+	    if (msg.match(new RegExp(Funbot.filters.beggerWords.join('|'), 'gi')) && Funbot.settings.beggerFilter)
+	    	return API.moderateDeleteChat(chatID),
+	    	API.sendChat(responses[randomInt].replace(/\{beggar\}/gi, data.un)),
+	    	setTimeout(function () {
+	    		API.moderateBanUser(fromID, 'h');
+	    	}, 1500), false;
+	    if (msg.split(' ')[0].match(new RegExp(Funbot.filters.commandWords.join('|'), 'gi')))
+	    	return API.moderateDeleteChat(chatID), true; 
     });
     
     
     API.on(API.CHAT, function(data){ // Chat Function #3
         msg = data.message.toLowerCase().replace(/&colon;/g, ':'),
-        chatID = data.chatID; 
-        fromID = data.unID;
-        userfrom = data.un;
+	        chatID = data.cid,
+	        fromID = data.uid,
+	        userfrom = data.un;
         /* Match Arrays */
         var inputMatches = [
         	[':eyeroll:', ':notamused:', ':yuno:'], // "Misc" Messages
@@ -1334,14 +1330,14 @@ function chatMe(msg)
         	['i got to go', 'igtg', 'gtg', 'be back', 'going off', 'off to', 'have to go', 'bye bot', 'bot bye'] // "Afk" Messages
         ];
         var outputMessages = [
-        	['/me ¬_¬', '/me ಠ_ಠ', '/me ლ(ಥ益ಥლ'], // "Misc" Messages
+			['/me ¬_¬', '/me ಠ_ಠ', '/me ლ(ಥ益ಥლ'], // "Misc" Messages
 			['Hey!', 'Oh hey there!', 'Good day sir!', 'Hi', 'Howdy!', 'Waddup!'], // Hello Messages
 			['I\'m good thanks for asking :)', 'Doing great yo and yourself?', 'All Good Mate!', 'I\'m good thanks for asking!', 'Yeee i\'m cool and youself yo?'], // "Hru" Messages
 			["You're welcome! :D","Your always welcome bro!","No prob man.."], // "TY" Messages
 			['Fuck yeahh!! :D I love you too baby!', 'I love you too ;).....   Sex?... JK you don\'t want this big thing ;)', 'I love you too o.0', 'Sweet.. Love you to ;)'], // "Love" Messages
 			['Nah.. I don\'t need another fuck after giving your mom one last night.', '</input fuck> Jk... Fuck you too', '< Test fuck >.. Sorry 0% fucks were given by me.'], // "Fuck" Messages
-			['<Test/ShutUp ... Nope','Eat this http://i.imgur.com/CSq5xkH.gif','No you shut up!','But i was made to talk.. :(','Just because i am a bot doesn\'t mean you have to tell me to shut up. Why don\'t you shut up!','Hey idiot! Ever heard of pressing the "Ignore button"?'], // "stfu" messages
-			['See ya man!','Awww, See ya babe.','Glad you came by thanks! :kissing_heart:','Thanks for coming. Hope to see you soon! :blue_heart:'] // "Afk" Messages
+			['<Test/ShutUp ... Nope', 'Eat this http://i.imgur.com/CSq5xkH.gif', 'No you shut up!', 'But i was made to talk.. :(', 'Just because i am a bot doesn\'t mean you have to tell me to shut up. Why don\'t you shut up!', 'Hey idiot! Ever heard of pressing the "Ignore button"?'], // "stfu" messages
+			['See ya man!', 'Awww, See ya babe.', 'Glad you came by thanks! :kissing_heart:', 'Thanks for coming. Hope to see you soon! :blue_heart:'] // "Afk" Messages
         ];
         function sendMessage (text, cooldown) {
         	API.sendChat(((text.split(' ')[0] === '/me') ? '@' + userfrom + ' ' : '') + text);
