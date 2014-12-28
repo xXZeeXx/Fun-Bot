@@ -33,7 +33,7 @@
 
 
 //                                              ====== FUN BOT SCRIPT  ======
-
+Array.prototype.Shift = function () { return Array.prototype.shift.call(this), this; };
 
 var Funbot = {};
 var ruleSkip = {};
@@ -306,6 +306,7 @@ Funbot.pubVars.skipOnExceed;
 Funbot.pubVars.command = false;
 
 Array.prototype.remove = function () { var c, f = arguments, d = f.length, e; while (d && this.length) { c = f[--d]; while ((e = this.indexOf(c)) !== -1) { this.splice(e, 1) } } return this };
+
 if (window.location.hostname === "plug.dj") {
     window.setInterval(sendAnnouncement, 1000 * announcementTick);
     API.on(API.ADVANCE, djAdvanceEvent);
@@ -383,14 +384,12 @@ if (window.location.hostname === "plug.dj") {
         return caught;
     };
 
-    function getUserID(username) {
+    function getUser(username) {
         var users = API.getUsers();
-        for (var i in users) {
-            if (users[i].username == username) {
-                return users[i].id;
-            }
-        }
-        return "User Not Found!";
+        for (var i = 0; i < users.length; i++)
+            if (users[i].username == username)
+                return users[i];
+        return false;
     };
 
     botMethods.cleanString = function (string) {
@@ -514,7 +513,7 @@ if (window.location.hostname === "plug.dj") {
                     case "ban":
                         if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins) || typeof command[1] == "undefined") {
                             var username = msg.indexOf('@') + 1;
-                            var userid = getUserID(username);
+                            var userid = getUser(username).id;
                             API.moderateBanUser(userid, 0, API.BAN.HOUR);
                         } else {
                             API.sendChat('You need to be a staff memeber to do that!');
@@ -524,7 +523,7 @@ if (window.location.hostname === "plug.dj") {
                     case "queup":
                         if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins) || typeof command[1] == "undefined") {
                             var username = msg.indexOf('@') + 1;
-                            var userid = getUserID(username);
+                            var userid = getUser(username).id;
                             API.moderateAddDJ(userid);
                         } else {
                             API.sendChat('You need to be a staff memeber to do that!');
@@ -534,7 +533,7 @@ if (window.location.hostname === "plug.dj") {
                     case "quedown":
                         if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
                             var username = msg.substr(msg.indexOf('@') + 1);
-                            var userid = getUserID(username);
+                            var userid = getUser(username).id;
                             API.moderateRemoveDJ(userid);
                         } else {
                             API.sendChat('You need to be a staff memeber to do that!');
@@ -835,7 +834,7 @@ if (window.location.hostname === "plug.dj") {
                         }
                         break;
 
-                        /*case "songLimit":
+                    case "songLimit":
                                if(API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)){
                                if(typeof command[1] == "undefined"){
                                API.sendChat("Hey smart guy i need a number");
@@ -844,7 +843,7 @@ if (window.location.hostname === "plug.dj") {
                                Funbot.settings.songLimit = command[1];
                                   }
                                }
-                               break;*/
+                               break;
 
                     case "status":
                         if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
@@ -870,75 +869,11 @@ if (window.location.hostname === "plug.dj") {
                         break;
 
                     case "fortune":
-                        if (typeof command[1] == "undefined") {
-                            var crowd = API.getUsers();
-                            var randomUser = Math.floor(Math.random() * crowd.length);
-                            var randomFortune = Math.floor(Math.random() * Funbot.misc.fortune.length);
-                            var randomSentence = Math.floor(Math.random() * 1);
-                            switch (randomSentence) {
-                                case 0:
-                                    API.sendChat("@" + data.un + "," + Funbot.misc.fortune[randomFortune]);
-                                    break;
-                                case 1:
-                                    API.sendChat("@" + data.un + "," + Funbot.misc.fortune[randomFortune]);
-                                    break;
-                            }
-                        } else {
-                            if (command[1].indexOf("@") === 0) command[1] = command[1].substring(1);
-                            var randomFortune = Math.floor(Math.random() * Funbot.misc.fortune.length);
-                            var randomSentence = Math.floor(Math.random() * 1);
-                            switch (randomSentence) {
-                                case 0:
-                                    API.sendChat("@" + data.un + "," + Funbot.misc.fortune[randomFortune]);
-                                    break;
-                                case 1:
-                                    API.sendChat("@" + data.un + "," + Funbot.misc.fortune[randomFortune]);
-                                    break;
-                            }
-                        }
-                        if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            Funbot.misc.ready = false;
-                            setTimeout(function () { Funbot.misc.ready = true; }, Funbot.settings.cooldown * 1000);
-                        }
+                        
                         break;
 
                     case "roll":
-                        if (typeof command[1] == "undefined") {
-                            var crowd = API.getUsers();
-                            var randomUser = Math.floor(Math.random() * crowd.length);
-                            var randomRoll = Math.floor(Math.random() * Funbot.misc.roll.length);
-                            var randomSentence = Math.floor(Math.random() * 2);
-                            switch (randomSentence) {
-                                case 0:
-                                    API.sendChat("@" + data.un + " You rolled a " + Funbot.misc.roll2[randomRoll]);
-                                    setTimeout(function () {
-                                        document.getElementById("woot").click()
-                                    }, 650);
-                                    break;
-                                case 1:
-                                    API.sendChat("@" + data.un + ", " + Funbot.misc.roll[randomRoll]);
-                                    break;
-                            }
-                        } else {
-                            if (command[1].indexOf("@") === 0) command[1] = command[1].substring(1);
-                            var randomRoll = Math.floor(Math.random() * Funbot.misc.roll.length);
-                            var randomSentence = Math.floor(Math.random() * 2);
-                            switch (randomSentence) {
-                                case 0:
-                                    API.sendChat("@" + data.un + " You rolled a " + Funbot.misc.roll2[randomRoll]);
-                                    setTimeout(function () {
-                                        document.getElementById("woot").click()
-                                    }, 650);
-                                    break;
-                                case 1:
-                                    API.sendChat("@" + data.un + ", " + Funbot.misc.roll[randomRoll]);
-                                    break;
-                            }
-                        }
-                        if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            Funbot.misc.ready = false;
-                            setTimeout(function () { Funbot.misc.ready = true; }, Funbot.settings.cooldown * 1000);
-                        }
+                        
                         break;
 
                     case "8ball":
@@ -1106,29 +1041,7 @@ if (window.location.hostname === "plug.dj") {
 
 
                     case "hug":
-                        if (typeof command[1] == "@") {
-                            var crowd = API.getUsers();
-                            var randomUser = Math.floor(Math.random() * crowd.length);
-                            var randomSentence = Math.floor(Math.random() * 3);
-                            switch (randomSentence) {
-                                case 0:
-                                    API.sendChat("Hugs? Forget that!");
-                                    setTimeout(function () {
-                                        API.sendChat("/me grabs @" + command[1] + "'s ass");
-                                    }, 650);
-                                    break;
-                                case 1:
-                                    API.sendChat("/me gives @" + command[1] + " a big bear hug");
-                                    break;
-                                case 2:
-                                    API.sendChat("/me gives @" + command[1] + " a soft, furry hug");
-                                    break;
-                                case 3:
-                                    API.sendChat("/me gives @" + command[1] + " an awkward hug");
-                                    break;
-                            }
-                        } else {
-                            if (command[1].indexOf("@") === 0) command[1] = command[1].substring(1);
+                        if (command[1].indexOf("@") === 0) command[1] = command[1].substring(1);
                             var crowd = API.getUsers();
                             var randomUser = Math.floor(Math.random() * crowd.length);
                             var randomSentence = Math.floor(Math.random() * 3);
@@ -1227,63 +1140,16 @@ if (window.location.hostname === "plug.dj") {
     });
 
     API.on(API.CHAT, function (data) { // Chat Function #1
-        if (data.message.indexOf('.set ') === 0) {
-            var msg = data.message, from = data.un, fromID = data.unID;
-            var id = data.unID;
-            var msg = data.message;
-            var userfrom = data.un;
-            var command = msg.substring(1).split(' ');
+        if (data.message.split(' ')[0] === '.set') {
+            var msg = data.message, 
+                from = data.un, 
+                command = msg.split(' ')[0].split('').Shift().join(''),
+                roleIndex = { 'none': 0, 'rdj': 1, 'bouncer': 2, 'manager': 3, 'cohost': 4 };
             if (Funbot.misc.ready || API.getUsers(data.un, Funbot.admins) || API.getUsers(data.un, PlugMod)) {
-                switch (command[1]) {
-                    case 'none':
-                        if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            var username = msg.substr(msg.indexOf('@') + 1);
-                            var userid = getUserID(username);
-                            API.moderateSetRole(userid, API.ROLE.NONE);
-                        } else {
-                            API.sendChat('You need to be a staff memeber to do that!');
-                        }
-                        break;
-                    case 'resident':
-                        if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            var username = msg.substr(command[1]);
-                            var userid = getUserID(username);
-                            API.moderateSetRole(userid, API.ROLE.DJ);
-                        } else {
-                            API.sendChat('You need to be a staff memeber to do that!');
-                        }
-                        break;
-                    case 'bouncer':
-                        if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            var username = msg.substr(msg.indexOf('@') + 1);
-                            var userid = getUserID(username);
-                            API.moderateSetRole(userid, API.ROLE.BOUNCER);
-                        } else {
-                            API.sendChat('You need to be a staff memeber to do that!');
-                        }
-                        break;
-                    case 'manager':
-                        if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            var username = msg.substr(msg.indexOf('@') + 1);
-                            var userid = getUserID(username);
-                            API.moderateSetRole(userid, API.ROLE.MANAGER);
-                        } else {
-                            API.sendChat('You need to be a staff memeber to do that!');
-                        }
-                        break;
-                    case 'cohost':
-                        if (API.hasPermission(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
-                            var username = msg.substr(msg.indexOf('@') + 1);
-                            var userid = getUserID(username);
-                            API.moderateSetRole(userid, API.ROLE.COHOST);
-                        } else {
-                            API.sendChat('You need to be a staff memeber to do that!');
-                        }
-                        break;
-                    default:
-                        API.sendChat("Can't set user to that variation!");
-                        break;
-                }
+                var roleCode = roleIndex[msg.split(' ')[1]] || null,
+                    targetUser = getUser(msg.split('@')[1].trim());
+                if (getUser(from).role >= (roleCode-1) && roleCode && targetUser)
+                    API.moderateSetRole(targetUser.id, roleCode);
             }
         }
     });
@@ -1343,9 +1209,10 @@ if (window.location.hostname === "plug.dj") {
             for (var i = 0; i < inputMatches[0].length; i++)
                 if (msg.match(inputMatches[0][i]))
                     sendMessage(outputMessages[0][i], false);
-            for (var x = 1; x < inputMatches.length; x++)
-                if (msg.match(new RegExp(inputMatches[x].join('|'), 'gi')))
-                    return sendMessage(outputMessages[x][Math.floor(Math.random() * outputMessages[x].length)], true);
+            for (var i = 1; i < inputMatches.length; i++)
+                for (var x = 0; x < inputMatches[i].length; x++)
+                    if (msg.match(inputMatches[i][x]))
+                        return sendMessage(outputMessages[x][Math.floor(Math.random() * outputMessages[x].length)], true);
         }
     });
 
