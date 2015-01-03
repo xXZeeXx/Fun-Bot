@@ -1041,27 +1041,27 @@ if (window.location.hostname === "plug.dj") {
 
 
                     case "hug":
-                        if (command[1].indexOf("@") === 0) command[1] = command[1].substring(1);
-                            var crowd = API.getUsers();
-                            var randomUser = Math.floor(Math.random() * crowd.length);
-                            var randomSentence = Math.floor(Math.random() * 3);
-                            switch (randomSentence) {
-                                case 0:
-                                    API.sendChat("Hugs? Forget that!");
-                                    setTimeout(function () {
-                                        API.sendChat("/me grabs @" + command[1] + "'s ass");
-                                    }, 650);
-                                    break;
-                                case 1:
-                                    API.sendChat("/me gives @" + command[1] + " a big bear hug");
-                                    break;
-                                case 2:
-                                    API.sendChat("/me gives @" + command[1] + " a soft, furry hug");
-                                    break;
-                                case 3:
-                                    API.sendChat("/me gives @" + command[1] + " an awkward hug");
-                                    break;
-                            }
+                        if (command[1].indexOf("@") === 0) 
+                            command[1] = command[1].substring(1);
+                        var crowd = API.getUsers();
+                        var randomUser = Math.floor(Math.random() * crowd.length);
+                        var randomSentence = Math.floor(Math.random() * 3);
+                        switch (randomSentence) {
+                            case 0:
+                                API.sendChat("Hugs? Forget that!");
+                                setTimeout(function () {
+                                    API.sendChat("/me grabs @" + command[1] + "'s ass");
+                                }, 650);
+                                break;
+                            case 1:
+                                API.sendChat("/me gives @" + command[1] + " a big bear hug");
+                                break;
+                            case 2:
+                                API.sendChat("/me gives @" + command[1] + " a soft, furry hug");
+                                break;
+                            case 3:
+                                API.sendChat("/me gives @" + command[1] + " an awkward hug");
+                                break;
                         }
                         if (API.getUsers(data.un, PlugMod) || API.getUsers(data.un, PlugMod) || API.getUsers(data.un, Funbot.admins)) {
                             Funbot.misc.ready = false;
