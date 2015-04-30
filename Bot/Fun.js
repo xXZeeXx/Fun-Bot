@@ -72,7 +72,7 @@ Funbot.settings.ruleSkip = true;
 Funbot.settings.removedFilter = true;
 
 // Admins ID
-Funbot.admins = ["3852632", '5448898'];
+Funbot.admins = ["4324523", '5448898'];
 
 // ROLE PERMISSION
 plugAdmin = "API.ROLE.ADMIN";
@@ -141,7 +141,7 @@ Funbot.misc.ball = [
 " [:8ball:] My reply is no",
 " [:8ball:] My sources say no",
 " [:8ball:] Outlook not so good",
-" [:8ball:] Very doubtful"];
+" [:8ball:] Die in a hole :>"];
 
 Funbot.misc.ht = ["My magic coins says: Tails", "My magic coin says: Heads"];
 
